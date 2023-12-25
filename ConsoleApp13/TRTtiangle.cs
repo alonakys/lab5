@@ -10,20 +10,8 @@ namespace ConsoleApp13
         protected double sideA;
         protected double sideB;
         protected double sideC;
-       
-        
-        public TRTriangle(double a, double b)
-        {
-            if (a > 0 && b > 0)
-            {
-                sideA = a;
-                sideB = b;
-            }
-            else
-            {
-                throw new ArgumentException("Введено некоректнi сторони");
-            }
-        }
+
+
         public double SideA
         {
             get { return sideA; }
@@ -74,7 +62,7 @@ namespace ConsoleApp13
         }
         public TRTriangle(double a, double b, double c)
         {
-            if (a + b > c && a + c > b && b + c > a)
+            if (a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a)
             {
                 SideA = a;
                 SideB = b;
@@ -101,7 +89,7 @@ namespace ConsoleApp13
         }
         public double CalcPer()
         {
-            SideC = Math.Sqrt(sideA * sideA + sideB * sideB);
+            sideC = Math.Sqrt(sideA * sideA + sideB * sideB);
             return sideA + sideB + sideC;
         }
         public void PrintInfo()
@@ -114,7 +102,9 @@ namespace ConsoleApp13
             double a = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Enter second side (b) as integer or decimal using comma separator:");
             double b = Convert.ToDouble(Console.ReadLine());
-            return new TRTriangle(a, b);
+            Console.WriteLine("Enter third side (c) as integer or decimal using comma separator:");
+            double c = Convert.ToDouble(Console.ReadLine());
+            return new TRTriangle(a, b,c);
         }
         public bool CompareTo(TRTriangle triangle)
         {
@@ -127,11 +117,11 @@ namespace ConsoleApp13
         }
         public static TRTriangle operator *(double multi, TRTriangle triangle)
         {
-            return new TRTriangle(multi * triangle.sideA, multi * triangle.sideB);
+            return new TRTriangle(multi * triangle.sideA, multi * triangle.sideB, multi*triangle.sideC);
         }
         public static TRTriangle operator *(TRTriangle triangle, double multi)
         {
-            return new TRTriangle(multi * triangle.sideA, multi * triangle.sideB);
+            return new TRTriangle(multi * triangle.sideA, multi * triangle.sideB, multi*triangle.sideC);
         }
     }
 }

@@ -9,9 +9,6 @@ namespace ConsoleApp13
         public TRTriangleF():base(3,4,5)
         {
         }
-        public TRTriangleF(double a, double b) : base(a, b)
-        {
-        }
         public TRTriangleF(double a, double b, double c) : base(a, b, c)
         {
         }
@@ -21,7 +18,7 @@ namespace ConsoleApp13
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(sideA + sideB + sideC);
+            return HashCode.Combine(sideA, sideB, sideC);
         }
     }
 }
